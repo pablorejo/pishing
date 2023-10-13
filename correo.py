@@ -35,11 +35,16 @@ if (variables.GENERAR_OBJETIVOS):
 # Saber cual es el array que vamos a usar
 array = []
 if variables.GENERAR_CORREOS:
-    array = chatgpt.GenerarCorreos()
+    continuar = input("Esta seguro de que desea generar dirrecciones de correos con IA para enviar correos (s/n): ")
+    if (continuar == "s"):
+        array = chatgpt.GenerarCorreos()
+    else:
+        exit(0)
+
 else:   
     print("Obteniendo correos de la lista predefinida")
     contenido = ""
-    with open('correos.txt', 'r') as archivo:
+    with open(variables.FICHERO_DIRECCION_CORREOS_ENVIAR, 'r') as archivo:
         contenido = archivo.read()  # Lee todo el contenido del archivo
     array = str(contenido).split("\n")
 

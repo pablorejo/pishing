@@ -1,3 +1,5 @@
+import os
+
 # Correo desde el que vamos a enviar los mensajes
 CORREO_EMISOR = "tu-correo@lo-que-sea"
 
@@ -25,14 +27,11 @@ URL_DONACION = "ayudanos.com"
 NUMERO_DE_LINEAS_MIN = 100
 NUMERO_DE_LINEAS_MAX = 200
 
-
-if (not GENERAR_OBJETIVOS): 
-    # En caso de que queramos que sea con un objetivo en concreto
-    NOMBRE_EMPRESA = "Perros sin casa"
-    IMAGEN_EMPRESA = "https://imgmedia.larepublica.pe/640x371/larepublica/original/2022/07/27/62e168ce1c95403984781dba.webp"
-    OBJETIVO_EMPRESA = "Eres una organizacion que busca ayudar a los perros callejeros"
-
-
+# if (not GENERAR_OBJETIVOS): 
+# En caso de que queramos que sea con un objetivo en concreto
+NOMBRE_EMPRESA = "Perros sin casa"
+IMAGEN_EMPRESA = "https://imgmedia.larepublica.pe/640x371/larepublica/original/2022/07/27/62e168ce1c95403984781dba.webp"
+OBJETIVO_EMPRESA = "Eres una organizacion que busca ayudar a los perros callejeros"
 
 # Numero de imagenes maximo en caso de generar automaticamente las empresas
 NUMERO_DE_IMAGENES = 1
@@ -42,13 +41,29 @@ CARPETA_IMAGENES = "imagenes/"
 
 ##### GENERACION DE CORREOS #####
 GENERAR_CORREOS = False # En caso de querer generar los correos aleatoriamente
-if (GENERAR_CORREOS):
-    NUMERO_DE_CORREOS = 1000000 # Es aproximado al alza es decir nunca va ser menor que este numero 
-    TERMINACIONES_CORREOS = ["hotmail.com","yahoo.com","outlook.com","yahoo.co.uk","gmail.com"]
-    GUARDAR_EN_FICHERO = True
-    NUMERO_MAX_GENERADO_CHAT = 50 # Esta opcion sera la que diga el numero maximo de nombres y apellidos que el chat puede generar.
 
+# if (GENERAR_CORREOS):
+NUMERO_DE_CORREOS = 1000000 # Es aproximado al alza es decir nunca va ser menor que este numero 
+TERMINACIONES_CORREOS = ["hotmail.com","yahoo.com","outlook.com","yahoo.co.uk","gmail.com"]
+GUARDAR_EN_FICHERO = True
+
+# if (GUARDAR_EN_FICHERO):
+FICHERO_DIRECCION_CORREOS_GEUARDAR = 'correos_2.txt'
+NUMERO_MAX_GENERADO_CHAT = 50 # Esta opcion sera la que diga el numero maximo de nombres y apellidos que el chat puede generar.
+
+# else:
+FICHERO_DIRECCION_CORREOS_ENVIAR = 'correos.txt'
 
 # CLAVES DE API Y DE CORREO
 CLAVE_API = "CLAVE-DE-LA-API-DE-OPENAI"
 CLAVE_CORREO = "CLAVE-DE-TU-CORREO-ELECTRONICO"
+
+# Verifica si el directorio ya existe
+if not os.path.exists(CARPETA_IMAGENES):
+    os.makedirs(CARPETA_IMAGENES)
+    print(f"Directorio '{CARPETA_IMAGENES}' creado.")
+
+
+if not os.path.exists(FICHERO_DIRECCION_CORREOS_ENVIAR):
+    print(f"\n\nERROR:\nEl archivo '{FICHERO_DIRECCION_CORREOS_ENVIAR}' no existe.\n")
+    exit(-1)

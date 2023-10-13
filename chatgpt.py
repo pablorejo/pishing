@@ -265,7 +265,7 @@ def GenerarCorreos():
     return correos
 
 def GuardarCorreos(correos):
-    with open('correos_2.txt', 'w') as archivo:
+    with open(variables.FICHERO_DIRECCION_CORREOS_GEUARDAR, 'w') as archivo:
         for correo in correos:
             archivo.write(correo + "\n")
         archivo.close()
